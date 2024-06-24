@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('employee_id');
             $table->longText('current_address');
-            $table->string('employee_photo');
+            $table->string('image');
             $table->string('ssb')->nullable();
             $table->string('nrc');
             $table->date('date_of_birth')->nullable();

@@ -22,7 +22,6 @@ Route::get('joining', [UserController::class, 'joiningPage'])->name('user#joinin
 // login register routes
 Route::middleware(['guest'])->group(function() {
     Route::get('loginPage', [AuthController::class, 'loginPage'])->name('auth#loginPage');
-    Route::get('registerPage', [AuthController::class, 'registerPage'])->name('auth#registerPage');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -33,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
         // User routes
         Route::prefix('user')->middleware(['role:it'])->group(function () {
             Route::get('list', [AdminUserController::class, 'userListPage'])->name('admin#userListPage');
-            Route::get('registerPage', [AuthController::class, 'registerPage'])->name('auth#registerPage');
+            Route::get('create', [AuthController::class, 'registerPage'])->name('auth#registerPage');
         });
 
         // Applyer routes (HR, TL, and IT roles can access)
@@ -48,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('idcard')->middleware(['role:hr,it'])->group(function () {
             Route::get('list', [IDcardController::class, 'idCardListPage'])->name('admin#idCardListPage');
             Route::get('add', [IDcardController::class, 'idCardCreatePage'])->name("admin#idCardCreatePage");
+            Route::post('add', [IDcardController::class, 'idCardCreate'])->name('admin#idCardCreate');
+            Route::get('edit/{id}', [IDcardController::class, 'idCardEditPage'])->name('admin#idCardEditPage');
+            Route::post('edit', [IDcardController::class, 'idCardEdit'])->name('admin#idCardEdit');
         });
 
         // Gate pass card routes (Admin and IT roles can access)

@@ -122,7 +122,15 @@
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar-container">
                             <div class="avatar avatar-sm avatar-indicators avatar-online">
-                                <img alt="avatar" src="../src/assets/img/profile-30.png" class="rounded-circle">
+                                @if (Auth::user()->image == null)
+                                    @if (Auth::user()->gender == 'male')
+                                        <img alt="{{ Auth::user()->name }} avatar" src="{{ asset('image/default_user.jpg') }}" class="rounded-circle">
+                                    @else
+                                        <img alt="{{ Auth::user()->name }} avatar" src="{{ asset('image/female_default.png') }}" class="rounded-circle">
+                                    @endif
+                                @else
+                                    <img alt="{{ Auth::user()->name }} avatar" src="{{ asset('storage/userPhoto/' . Auth::user()->image) }}" class="rounded-circle">
+                                @endif
                             </div>
                         </div>
                     </a>
@@ -133,8 +141,8 @@
                                     &#x1F44B;
                                 </div>
                                 <div class="media-body">
-                                    <h5>Shaun Park</h5>
-                                    <p>Project Leader</p>
+                                    <h5>{{ Auth::user()->name }}</h5>
+                                    <p>{{ Auth::user()->position }}</p>
                                 </div>
                             </div>
                         </div>

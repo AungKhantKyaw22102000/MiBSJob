@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class IDcard extends Model
 {
     use HasFactory;
-    protected $fillable = ['employee_id','name','department','address','employee_photo'];
+    protected $fillable = ['employee_id','name','department','address','image'];
 }

@@ -50,13 +50,9 @@
                                                             <div class="col-xl-2 col-lg-12 col-md-4">
                                                                 <div class="profile-image  mt-4 pe-md-4">
 
-                                                                    <!-- // The classic file input element we'll enhance
-                                                                    // to a file pond, we moved the configuration
-                                                                    // properties to JavaScript -->
-
                                                                     <div class="img-uploader-content">
                                                                         <input type="file" class="filepond"
-                                                                            name="filepond" accept="image/png, image/jpeg, image/gif"/>
+                                                                            name="userPhoto" />
                                                                     </div>
 
                                                                 </div>
@@ -67,28 +63,28 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="employeeId">Employee ID</label>
-                                                                                <input type="text" name="employeeId" class="form-control mb-3" id="employeeId" placeholder="Employee ID" readonly value="">
+                                                                                <input type="text" name="employeeId" class="form-control mb-3" id="employeeId" placeholder="Employee ID" readonly value="{{ Auth::user()->employee_id }}">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="employeeName">Employee Name</label>
-                                                                                <input type="text" name="employeeName" class="form-control mb-3" id="employeeName" placeholder="Full Name" value="">
+                                                                                <input type="text" name="employeeName" class="form-control mb-3" id="employeeName" placeholder="Full Name" value="{{ Auth::user()->name }}">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="employeePosition">Position</label>
-                                                                                <input type="text" name="employeePosition" class="form-control mb-3" id="employeePosition" placeholder="Designer" value="">
+                                                                                <input type="text" name="employeePosition" class="form-control mb-3" id="employeePosition" placeholder="Designer" value="{{ Auth::user()->position }}">
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="employeeRole">Role</label>
-                                                                                <input type="text" name="employeeRole" class="form-control mb-3" id="employeeRole" placeholder="Role" readonly value="">
+                                                                                <input type="text" name="employeeRole" class="form-control mb-3" id="employeeRole" placeholder="Role" readonly value="{{ Auth::user()->role }}">
                                                                             </div>
                                                                         </div>
 
@@ -97,8 +93,8 @@
                                                                                 <label for="gender">Gender</label>
                                                                                 <select class="form-select mb-3" id="gender">
                                                                                     <option>Select Gender</option>
-                                                                                    <option selected>Male</option>
-                                                                                    <option>Female</option>
+                                                                                    <option @if(Auth::user()->gender == 'male') selected @endif >Male</option>
+                                                                                    <option @if(Auth::user()->gender == 'female') selected @endif >Female</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -106,7 +102,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="employeeEmail">Email</label>
-                                                                                <input type="text" class="form-control mb-3" id="employeeEmail" name="employeeEmail" placeholder="Write your email here" value="Jimmy@gmail.com">
+                                                                                <input type="text" class="form-control mb-3" id="employeeEmail" name="employeeEmail" placeholder="Write your email here" value="{{ Auth::user()->email }}">
                                                                             </div>
                                                                         </div>
 
@@ -145,7 +141,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label for="oldPassword">Old Password</label>
-                                                                                <input type="password" name="oldPassword" class="form-control mb-3" id="oldPassword" placeholder="Old Password" readonly value="">
+                                                                                <input type="password" name="oldPassword" class="form-control mb-3" id="oldPassword" placeholder="Old Password" value="">
                                                                             </div>
                                                                         </div>
 

@@ -39,7 +39,7 @@
                                 <div class="tab-pane fade show active" id="animated-underline-home" role="tabpanel" aria-labelledby="animated-underline-home-tab">
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                            <form action="" class="form-control my-3" method="POST" enctype="multipart/form-data">
+                                            <form action="{{ route('admin#idCardCreate') }}" class="form-control my-3" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-xl-12">
@@ -49,8 +49,10 @@
                                                                     <div class="invoice-logo">
                                                                         <div class="profile-image">
                                                                             <div class="img-uploader-content">
-                                                                                <input type="file" class="filepond"
-                                                                                    name="employeePhoto" accept="image/png, image/jpeg, image/gif"/>
+                                                                                @error('employeePhoto')
+                                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                                @enderror
+                                                                                <input type="file" class=" @error('employeePhoto') is-invalid @enderror" name="employeePhoto" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -64,25 +66,28 @@
                                                                                 <div class="form-group row">
                                                                                     <label for="employeeId" class="col-sm-3 col-form-label col-form-label-sm">Employee ID</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control form-control-sm" name="employeeId" id="employeeId" placeholder="Employee ID">
+                                                                                        @error('employeeId')
+                                                                                            <small class="text-danger">{{ $message }}</small>
+                                                                                        @enderror
+                                                                                        <input type="text" value="{{ old('employeeId') }}" class="form-control @error('employeeId') is-invalid @enderror form-control-sm" name="employeeId" id="employeeId" placeholder="Employee ID">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group row">
                                                                                     <label for="employeeName" class="col-sm-3 col-form-label col-form-label-sm">Employee Name</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control form-control-sm" name="employeeName" id="employeeName" placeholder="Employee Name">
+                                                                                        @error('employeeName')
+                                                                                            <small class="text-danger">{{ $message }}</small>
+                                                                                        @enderror
+                                                                                        <input type="text" value="{{ old('employeeName') }}" class="form-control @error('employeeName') is-invalid @enderror form-control-sm" name="employeeName" id="employeeName" placeholder="Employee Name">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group row">
                                                                                     <label for="employeeDepartment" class="col-sm-3 col-form-label col-form-label-sm">Department</label>
                                                                                     <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control form-control-sm" name="employeeDepartment" id="employeeDepartment" placeholder="eg: food panda, wave, .etc">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label for="employeePhone" class="col-sm-3 col-form-label col-form-label-sm">Phone</label>
-                                                                                    <div class="col-sm-9">
-                                                                                        <input type="text" class="form-control form-control-sm" name="employeePhone" id="employeePhone" placeholder="eg: 0958256">
+                                                                                        @error('employeeDepartment')
+                                                                                            <small class="text-danger">{{ $message }}</small>
+                                                                                        @enderror
+                                                                                        <input type="text" value="{{ old('employeeDepartment') }}" class="form-control @error('employeeDepartment') is-invalid @enderror form-control-sm" name="employeeDepartment" id="employeeDepartment" placeholder="eg: food panda, wave, .etc">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -96,7 +101,10 @@
                                                                             <div class="form-group row invoice-note">
                                                                                 <label for="employeeAddress" class="col-sm-12 col-form-label col-form-label-sm">Address:</label>
                                                                                 <div class="col-sm-12">
-                                                                                    <textarea class="form-control" name="employeeAddress" id="employeeAddress" placeholder='Employee Address' style="height: 88px;"></textarea>
+                                                                                    @error('employeeAddress')
+                                                                                        <small class="text-danger">{{ $message }}</small>
+                                                                                    @enderror
+                                                                                    <textarea class="form-control @error('employeeAddress') is-invalid @enderror" name="employeeAddress" id="employeeAddress" placeholder='Employee Address' style="height: 88px;">{{ old('employeeAddress') }}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

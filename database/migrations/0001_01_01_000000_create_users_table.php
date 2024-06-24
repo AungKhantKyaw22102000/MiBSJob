@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('position');
             $table->string('role');
             $table->string('gender');
+            $table->string('image')->nullable();
             $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('department');
             $table->longText('address');
-            $table->string('employee_photo');
+            $table->string('image');
             $table->timestamps();
         });
     }
