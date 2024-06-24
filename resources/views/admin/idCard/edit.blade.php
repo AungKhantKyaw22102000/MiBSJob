@@ -23,6 +23,7 @@
                         <div class="doc-container">
                             <form action="{{ route('admin#idCardEdit') }}" class="form-control my-3" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" value="{{ $idCard->id }}" name="id">
                                 <div class="row">
                                     <div class="col-xl-9">
                                         <div class="invoice-content">

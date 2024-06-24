@@ -35,15 +35,15 @@ class IDcardController extends Controller
         $data['image'] = $fileName;
 
         IDcard::create($data);
-        return redirect()->route('admin#idCardCreatePage');
+        return back()->with(['success' => 'ID Card Created successfully!']);
     }
 
     // id card edit
-    public function idCardEdit($id, Request $request){
+    public function idCardEdit(Request $request){
         $this->idCardCreateValidation($request, 'update');
         $data = $this->getidCardData($request);
         if($request->hasFile('employeePhoto')){
-            $dbImage = IDcard::where('id',$id)->first();
+            $dbImage = IDcard::where('id',$request->id)->first();
             $dbImage = $dbImage->image;
 
             if($dbImage != null){
@@ -55,14 +55,24 @@ class IDcardController extends Controller
             $data['image'] = $fileName;
         }
 
-        IDcard::where('id', $id)->update($data);
+        IDcard::where('id', $request->id)->update($data);
         return redirect()->route('admin#idCardListPage');
+    }
+
+    // id card delete
+    public function idCardDelete($id) {
+        $idCard = IDcard::find($id);
+        if ($idCard) {
+            Storage::delete('public/employeePhoto/' . $idCard->image);
+            $idCard->delete();
+        }
+        return response()->json(['success' => 'ID Card Deleted Successfully.'], 200);
     }
 
     // id card create validation
     private function idCardCreateValidation($request, $action){
         $validationRule = [
-            'employeeId' => 'required',
+            'employeeId' => 'required|unique:i_dcards,employee_id,'.$request->id,
             'employeeName' => 'required',
             'employeeDepartment' => 'required',
             'employeeAddress' => 'required',

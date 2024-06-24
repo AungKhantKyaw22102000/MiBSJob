@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('add', [IDcardController::class, 'idCardCreate'])->name('admin#idCardCreate');
             Route::get('edit/{id}', [IDcardController::class, 'idCardEditPage'])->name('admin#idCardEditPage');
             Route::post('edit', [IDcardController::class, 'idCardEdit'])->name('admin#idCardEdit');
+            Route::delete('delete/{id}', [IDcardController::class, 'idCardDelete'])->name('admin#idCardDelete');
         });
 
         // Gate pass card routes (Admin and IT roles can access)

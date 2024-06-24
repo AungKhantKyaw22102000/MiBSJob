@@ -437,6 +437,7 @@
     <script src="{{ asset('admin/src/plugins/src/table/datatable/button-ext/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('admin/src/assets/js/apps/invoice-list.js') }}"></script>
     {{-- END DATA TABLE --}}
+    @yield('scriptSection')
 </body>
 
 </html>

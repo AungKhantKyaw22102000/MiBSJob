@@ -23,7 +23,12 @@
                         <div class="row mb-3">
                             <div class="col-md-12">
                                 <h2>Create ID Cards</h2>
-
+                                @if (session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <i class="fa-solid fa-check"></i> {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                @endif
                                 <ul class="nav nav-pills" id="animateLine" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="animated-underline-home-tab" data-bs-toggle="tab" href="#animated-underline-home" role="tab" aria-controls="animated-underline-home" aria-selected="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> Home</button>
@@ -47,14 +52,7 @@
                                                             <div class="invoice-detail-body">
                                                                 <div class="invoice-detail-title">
                                                                     <div class="invoice-logo">
-                                                                        <div class="profile-image">
-                                                                            <div class="img-uploader-content">
-                                                                                @error('employeePhoto')
-                                                                                    <small class="text-danger">{{ $message }}</small>
-                                                                                @enderror
-                                                                                <input type="file" class=" @error('employeePhoto') is-invalid @enderror" name="employeePhoto" />
-                                                                            </div>
-                                                                        </div>
+
                                                                     </div>
                                                                 </div>
 
@@ -88,6 +86,15 @@
                                                                                             <small class="text-danger">{{ $message }}</small>
                                                                                         @enderror
                                                                                         <input type="text" value="{{ old('employeeDepartment') }}" class="form-control @error('employeeDepartment') is-invalid @enderror form-control-sm" name="employeeDepartment" id="employeeDepartment" placeholder="eg: food panda, wave, .etc">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label for="formFile" class="col-sm-3 col-form-label col-form-label-sm">Photo</label>
+                                                                                    <div class="col-sm-9">
+                                                                                        @error('employeePhoto')
+                                                                                            <small class="text-danger">{{ $message }}</small>
+                                                                                        @enderror
+                                                                                        <input class="form-control file-upload-input @error('employeePhoto') is-invalid @enderror form-control-sm" name="employeePhoto" type="file" id="formFile">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -128,6 +135,8 @@
                                                     </div>
                                                 </div>
                                             </form>
+                                            <button class="btn btn-secondary bottom-center mb-2 me-4 _effect--ripple waves-effect waves-light">Button</button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -205,4 +214,10 @@
         <!--  END FOOTER  -->
     </div>
     <!--  END CONTENT AREA  -->
+@endsection
+
+@section('scriptSection')
+    <script>
+
+    </script>
 @endsection
