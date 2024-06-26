@@ -8,6 +8,6 @@ class EmployeeInfoController extends Controller
 {
     //direct route joining form page
     public function joiningFormListPage(){
-        return view("admin.applyer.joiningForm");
+        return view("admin.applyer.joiningFormList");
     }
 }

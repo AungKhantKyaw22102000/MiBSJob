@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IDcard;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,32 @@ class IDcardController extends Controller
     public function idCardEditPage($id){
         $idCard = IDcard::first();
         return view('admin.idCard.edit', compact('idCard'));
+    }
+
+    // view id card in pdf
+    public function viewIdCard($id){
+        $employee = IDcard::where('id', $id)->first();
+        if (!$employee) {
+            abort(404, 'Employee not found');
+        }
+        $data = [
+            'employee' => $employee,
+        ];
+        $pdf = Pdf::loadView('admin/idCard/idcard', $data);
+        return $pdf->stream('idcard.pdf');
+    }
+
+    // download id card in pdf
+    public function downloadIdCard($id){
+        $employee = IDcard::where('id', $id)->first();
+        if(!$employee) {
+            abort(404, 'Employee not found');
+        }
+        $data = [
+            'employee' => $employee,
+        ];
+        $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin/idCard/idcard', $data);
+        return $pdf->download('idcard.pdf');
     }
 
     // id card create

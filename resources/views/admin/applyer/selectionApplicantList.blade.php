@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'User Dashboard')
+@section('title', 'Selected Applicants List')
 
 @section('content')
     <!--  BEGIN CONTENT AREA  -->
@@ -12,7 +12,7 @@
                     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">User Dashboard</li>
+                            <li class="breadcrumb-item active" aria-current="page">Selection Applicant</li>
                         </ol>
                     </nav>
                 </div>
@@ -23,60 +23,66 @@
                             <table id="invoice-list" class="table dt-table-hover" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th class="checkbox-column"> Record no. </th>
-                                        <th>Employee Id</th>
+                                        <th class="checkbox-column">Record no.</th>
+                                        <th>Application Id</th>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Gender</th>
-                                        <th>Date</th>
+                                        <th>Phone Number</th>
+                                        <th>Desired Position</th>
+                                        <th>Previous Salary</th>
+                                        <th>Expected Salary</th>
+                                        <th>HR Interviewer Name</th>
+                                        <th>TL Interviewer Name</th>
+                                        <th>Interview Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
                                     <tr>
                                         <td class="checkbox-column">  </td>
-                                        <td><span class="inv-number">{{ $user->employee_id }}</span></td>
+                                        <td><span class="inv-number">MiBSCON123</span></td>
                                         <td>
-                                            <div class="d-flex">
-                                                <div class="usr-img-frame me-2 rounded-circle">
-                                                    @if(Auth::user()->image == null)
-                                                        @if(Auth::user()->gender == 'male')
-                                                            <img src="{{ asset('image/default_user.jpg') }}" class="img-fluid rounded-circle" alt="avatar">
-                                                        @else
-                                                            <img src="{{ asset('image/female_default.png') }}" alt="img-fluid rounded-circle" alt="avatar">
-                                                        @endif
-                                                    @else
-                                                        <img alt="avatar" class="img-fluid rounded-circle" src="{{ asset('storage/userPhoto/' . Auth::user()->image) }}">
-                                                    @endif
-                                                </div>
-                                                <p class="align-self-center mb-0 user-name"> {{ $user->name }} </p>
-                                            </div>
+                                            <p class="align-self-center mb-0 user-name"> Alma Clarke </p>
+                                                </td>
+                                        <td>
+                                            <p class="align-self-center mb-0 user-phone"> 09958265432 </p>
                                         </td>
                                         <td>
-                                            <p class="align-self-center mb-0 user-work">{{ $user->position }}</p>
+                                            <p class="align-self-center mb-0 user-phone"> IT </p>
                                         </td>
                                         <td>
-                                            <span class="inv-email">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                                {{ $user->email }}
-                                            </span>
+                                            <p class="align-self-center mb-0 user-info">50000</p>
                                         </td>
                                         <td>
-                                            <p class="align-self-center mb-0 user-info">{{ $user->role }}</p>
+                                            <p class="align-self-center mb-0 user-info">100000</p>
                                         </td>
                                         <td>
-                                            <p class="align-self-center mb-0 user-info">{{ $user->gender }}</p>
+                                            <p class="align-slef-center mb-0 user-name">akk</p>
+                                        </td>
+                                        <td>
+                                            <p class="align-self-center mb-0 user-name">hsumyat</p>
                                         </td>
                                         <td>
                                             <span class="inv-date">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                                                 {{ $user->created_at->format('d-M-Y') }}
+                                                10 Feb
                                             </span>
                                         </td>
                                         <td>
+                                            <a class="badge badge-light-primary text-start me-2" href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
+                                                    <path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <a class="badge badge-light-primary text-start me-2" href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
+                                                    <path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                            </a>
+                                            <a class="badge badge-light-primary text-start me-2" href="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
+                                                    <path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                                </svg>
+                                            </a>
                                             <a class="badge badge-light-primary text-start me-2" href="">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-3">
                                                     <path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
@@ -89,7 +95,6 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

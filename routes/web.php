@@ -13,6 +13,7 @@ use App\Http\Controllers\EmployeeInfoController;
 
 // home
 Route::get('/', [UserController::class, 'index'])->name('user#home');
+Route::post('user/apply', [UserController::class, 'apply'])->name('user#apply');
 
 // contact
 Route::get('contact', [UserController::class, 'contactPage'])->name('user#contactPage');
@@ -38,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
         // Applyer routes (HR, TL, and IT roles can access)
         Route::prefix('applyer')->middleware(['role:hr,tl,it'])->group(function () {
             Route::get('jobseeker/list', [JobApplyController::class, 'jobSeekerListPage'])->name('admin#jobSeekerListPage');
+            Route::delete('jobseeker/delete/{id}', [JobApplyController::class, 'jobSeekerDelete'])->name('admin#jobSeekerDelete');
             Route::get('interview/appoint', [InterviewController::class, 'interviewAppointListPage'])->name('admin#interviewAppointListPage');
             Route::get('applicants/selected', [InterviewController::class, 'selectedApplicantListPage'])->name('admin#selectedApplicantListPage');
             Route::get('joining', [EmployeeInfoController::class, 'joiningFormListPage'])->name('admin#joiningFormListPage');
@@ -51,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('edit/{id}', [IDcardController::class, 'idCardEditPage'])->name('admin#idCardEditPage');
             Route::post('edit', [IDcardController::class, 'idCardEdit'])->name('admin#idCardEdit');
             Route::delete('delete/{id}', [IDcardController::class, 'idCardDelete'])->name('admin#idCardDelete');
+            Route::get('view-idcard/{id}', [IDcardController::class, 'viewIdCard'])->name('admin#viewIdCard');
+            Route::get('download-idcard/{id}', [IDcardController::class, 'downloadIdCard'])->name('admin#downloadIdCard');
         });
 
         // Gate pass card routes (Admin and IT roles can access)

@@ -141,6 +141,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
 	<!-- Wizard script-->
 	<script src="{{ asset('user/js/func_1.js') }}"></script>
+    @yield('scriptSection')
 	<script>
 		$(document).ready(function() {
 			$('.logo-slider').slick({

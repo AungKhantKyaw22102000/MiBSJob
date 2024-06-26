@@ -42,8 +42,9 @@
                         <div id="progressbar"></div>
                     </div>
                     <!-- /top-wizard -->
-                    <form id="wrapped" method="post" enctype="multipart/form-data" class="fl-form fl-style-1 wizard-form"
+                    <form id="wrapped" action="{{ route('user#apply') }}" method="POST" enctype="multipart/form-data" class="fl-form fl-style-1 wizard-form"
                         novalidate="novalidate">
+                        @csrf
                         <input id="website" name="website" type="text" value="">
                         <!-- Leave for security protection, read docs for details -->
                         <div id="middle-wizard">
@@ -52,25 +53,25 @@
                                 <h3 class="main_question">Personal info</h3>
                                 <div class="form-group add_top_30">
                                     <label for="name">Your Name</label>
-                                    <input type="text" name="name" id="name" class="form-control"
+                                    <input type="text" name="applyerName" id="name" class="form-control"
                                         autocomplete="off" onchange="getVals(this, 'name_field');">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" name="phone" id="phone" class="form-control"
+                                    <input type="text" name="applyerPhone" id="phone" class="form-control"
                                         autocomplete="off">
                                 </div>
                                 <div class="form-group add_bottom_30">
                                     <div class="styled-select">
                                         <label for="d_pos">Choose Your Desire Position</label>
                                         <div class="fl-wrap fl-wrap-select fl-is">
-                                            <select class="form-control fl-select" id="d_pos" name="d_pos">
+                                            <select class="form-control fl-select" id="d_pos" name="desiredPosition">
                                                 <option value="">Choose a desire position</option>
-                                                <option>Call Center Agent</option>
-                                                <option>Team Leader</option>
-                                                <option>Call Center Quality Analyst(QA)</option>
-                                                <option>Operation Manager</option>
-                                                <option>Software Infrastructure Engineer</option>
+                                                <option value="Agent">Call Center Agent</option>
+                                                <option value="Team Leader">Team Leader</option>
+                                                <option value="QA">Call Center Quality Analyst(QA)</option>
+                                                <option value="OM">Operation Manager</option>
+                                                <option value="IT">Software Infrastructure Engineer</option>
                                             </select>
                                         </div>
                                     </div>
@@ -78,22 +79,22 @@
                                 <label for="have_nrc">NRC</label>
                                 <div class="form-group radio_input">
                                     <label for="have_nrc" class="container_radio me-3">Have NRC
-                                        <input type="radio" id="have_nrc" name="nrc" value="Yes">
+                                        <input type="radio" id="have_nrc" name="applyerNrc" value="Yes">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label for="doesnot_have_nrc" class="container_radio">Not Have NRC
-                                        <input type="radio" id="doesnot_have_nrc" name="nrc" value="No">
+                                        <input type="radio" id="doesnot_have_nrc" name="applyerNrc" value="No">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <label for="yes_edu_purpose">Education Purpose</label>
                                 <div class="form-group radio_input">
                                     <label for="yes_edu_purpose" class="container_radio me-3">Yes
-                                        <input type="radio" id="yes_edu_purpose" name="edu_purpose" value="Yes">
+                                        <input type="radio" id="yes_edu_purpose" name="educationPurpose" value="Yes">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label for="no_edu_purpose" class="container_radio">NO
-                                        <input type="radio" id="no_edu_purpose" name="edu_purpose" value="No">
+                                        <input type="radio" id="no_edu_purpose" name="educationPurpose" value="No">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -101,7 +102,7 @@
                                     <label for="fileupload">Upload Resume<br><small>(File accepted: .pdf, .doc/docx - Max
                                             file size: 15MB for demo limit)</small></label>
                                     <div class="fileupload">
-                                        <input type="file" id="fileupload" name="fileupload"
+                                        <input type="file" id="fileupload" name="applyerCV"
                                             accept=".pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
                                     </div>
                                 </div>
@@ -113,19 +114,19 @@
                                 <h2 class="section_title">Education Level</h2>
                                 <div class="form-group">
                                     <label class="container_radio version_2">High School
-                                        <input type="radio" name="edu_lv" value="High School">
+                                        <input type="radio" name="educationLevel" value="High School">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">Bachelor's Degree
-                                        <input type="radio" name="edu_lv" value="Bachelor's Degree">
+                                        <input type="radio" name="educationLevel" value="Bachelor's Degree">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">Master' Degree
-                                        <input type="radio" name="edu_lv" value="Master' Degree">
+                                        <input type="radio" name="educationLevel" value="Master' Degree">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">PhD
-                                        <input type="radio" name="edu_lv" value="PhD">
+                                        <input type="radio" name="educationLevel" value="PhD">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -133,19 +134,19 @@
                                 <h3 class="main_question">Do You have Work Experience in Call Center?</h3>
                                 <div class="form-group">
                                     <label class="container_radio version_2">No Experience
-                                        <input type="radio" name="work_exp" value="No Experience">
+                                        <input type="radio" name="workExperience" value="No Experience">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">1-2 years
-                                        <input type="radio" name="work_exp" value="1-2 years">
+                                        <input type="radio" name="workExperience" value="1-2 years">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">3-5 years
-                                        <input type="radio" name="work_exp" value="3-5 years">
+                                        <input type="radio" name="workExperience" value="3-5 years">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">6+ years
-                                        <input type="radio" name="work_exp" value="6+ years">
+                                        <input type="radio" name="workExperience" value="6+ years">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -158,15 +159,15 @@
                                 <h3 class="main_question">Are you available for work?</h3>
                                 <div class="form-group">
                                     <label class="container_radio version_2">Basic
-                                        <input type="radio" name="e_skill" value="Basic">
+                                        <input type="radio" name="englishSkill" value="Basic">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">Intermediate
-                                        <input type="radio" name="e_skill" value="Intermediate">
+                                        <input type="radio" name="englishSkill" value="Intermediate">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">Advanced
-                                        <input type="radio" name="e_skill" value="Advanced">
+                                        <input type="radio" name="englishSkill" value="Advanced">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -174,27 +175,27 @@
                                 <h3 class="main_question">Are you available for work?</h3>
                                 <div class="form-group">
                                     <label class="container_radio version_2">Basic
-                                        <input type="radio" name="c_skill" value="Basic">
+                                        <input type="radio" name="computerSkill" value="Basic">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">Intermediate
-                                        <input type="radio" name="c_skill" value="Intermdiate">
+                                        <input type="radio" name="computerSkill" value="Intermdiate">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container_radio version_2">Advanced
-                                        <input type="radio" name="c_skill" value="Advanced">
+                                        <input type="radio" name="computerSkill" value="Advanced">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
                                 <small>* Start branch radio based </small><br>
                                 <h3 class="main_question">Your Typing Speed in Burmese & English</h3>
                                 <div class="form-group">
-                                    <label for="b_speed">Typing Speed in Burmese</label>
-                                    <input type="text" name="b_speed" id="b_speed" class="form-control">
+                                    <label for="buemeseTypeSpeed">Typing Speed in Burmese</label>
+                                    <input type="text" name="buemeseTypeSpeed" id="buemeseTypeSpeed" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="e_speed">Typing Speed in English</label>
-                                    <input type="text" name="e_speed" id="e_speed" class="form-control">
+                                    <label for="englishTypeSpeed">Typing Speed in English</label>
+                                    <input type="text" name="englishTypeSpeed" id="englishTypeSpeed" class="form-control">
                                 </div>
                             </div>
 
@@ -205,13 +206,13 @@
                                     <label for="c_salary">Minimum salary? (in MMK)</label>
                                     <div class="styled-select">
                                         <div class="fl-wrap fl-wrap-select fl-is">
-                                            <select class="form-control" id="c_salary" name="c_salary">
+                                            <select class="form-control" id="c_salary" name="currentSalary">
                                                 <option>Choose a range</option>
-                                                <option>&lt;2lakhs</option>
-                                                <option>2-5lakhs</option>
-                                                <option>5-7lakhs</option=>
-                                                <option>7-10lakhs</option>
-                                                <option>&gt;10lakhs</option>
+                                                <option value="<2lakhs">&lt;2lakhs</option>
+                                                <option value="2-5lakhs">2-5lakhs</option>
+                                                <option value="5-7lakhs">5-7lakhs</option=>
+                                                <option value="7-10lakhs">7-10lakhs</option>
+                                                <option value=">10lakhs">&gt;10lakhs</option>
                                             </select>
                                         </div>
                                     </div>
@@ -220,7 +221,7 @@
                                     <label for="c_upload">Upload Pay Slip<br><small>(File accepted: .pdf, .png, .jpg - Max
                                             file size: 150KB for demo limit)</small></label>
                                     <div class="fileupload">
-                                        <input type="file" id="c_upload" name="c_upload"
+                                        <input type="file" id="c_upload" name="applyerCurrentPaySlip"
                                             accept=".pdf,.jpg,.jpeg,.png">
                                     </div>
                                 </div>
@@ -229,13 +230,13 @@
                                     <label for="e_salary">Minimum salary? (in MMK)</label>
                                     <div class="styled-select">
                                         <div class="fl-wrap fl-wrap-select fl-is">
-                                            <select class="form-control" id="e_salary" name="e_salary">
+                                            <select class="form-control" id="e_salary" name="expectedSalary">
                                                 <option>Choose a range</option>
-                                                <option>&lt;2lakhs</option>
-                                                <option>2-5lakhs</option>
-                                                <option>5-7lakhs</option>
-                                                <option>7-10lakhs</option>
-                                                <option>&gt;10lakhs</option>
+                                                <option value="<2lakhs">&lt;2lakhs</option>
+                                                <option value="2-5lakhs">2-5lakhs</option>
+                                                <option value="5-7lakhs">5-7lakhs</option=>
+                                                <option value="7-10lakhs">7-10lakhs</option>
+                                                <option value=">10lakhs">&gt;10lakhs</option>
                                             </select>
                                         </div>
                                     </div>
@@ -247,12 +248,12 @@
                                 <h3 class="main_question">Where is your nearest bus stop?</h3>
                                 <div class="form-group add_top_30">
                                     <label for="n_bus">Nearest Bus Stop</label>
-                                    <input type="text" name="n_bus" id="n_bus" class="form-control"
+                                    <input type="text" name="nearestBusStop" id="n_bus" class="form-control"
                                         autocomplete="off" onchange="getVals(this, 'name_field');">
                                 </div>
                                 <div class="form-group">
                                     <label for="n_time">Noticed Time</label>
-                                    <input type="time" name="n_time" id="n_time" class="form-control">
+                                    <input type="time" name="noticedTime" id="noticedTime" class="form-control">
                                 </div>
                                 <label for="shift">24 / 7 Shift</label>
                                 <div class="form-group radio_input">
@@ -269,7 +270,7 @@
                                     <div class="form-group terms">
                                         <label class="container_check">Are you able to work at our company at least 6
                                             months?
-                                            <input type="checkbox" name="6months" value="Yes">
+                                            <input type="checkbox" name="confirm" value="Yes">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -314,4 +315,47 @@
         <!-- /row-->
     </div>
     <!-- /container-fluid -->
+@endsection
+
+@section('scriptSection')
+<script>
+    jQuery(function($) {
+        "use strict";
+
+        $('form#wrapped').attr('action', "{{ route('user#apply') }}");
+
+        $("#wizard_container").wizard({
+            stepsWrapper: "#wrapped",
+            submit: ".submit",
+            unidirectional: false,
+            beforeSelect: function(event, state) {
+                if ($('input#website').val().length != 0) {
+                    return false;
+                }
+                if (!state.isMovingForward)
+                    return true;
+                var inputs = $(this).wizard('state').step.find(':input');
+                return !inputs.length || !!inputs.valid();
+            }
+        }).validate({
+            errorPlacement: function(error, element) {
+                if (element.is(':radio') || element.is(':checkbox')){
+                    error.insertBefore(element.next());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+
+        // Progress bar setup
+        $("#progressbar").progressbar();
+
+        $("#wizard_container").wizard({
+            afterSelect: function(event, state) {
+                $("#progressbar").progressbar("value", state.percentComplete);
+                $("#location").text("" + state.stepsComplete + " of " + state.stepsPossible + " completed");
+            }
+        });
+    });
+</script>
 @endsection

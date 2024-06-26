@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('job_applies', function (Blueprint $table) {
             $table->id();
+            $table->string('apply_id')->unique();
             $table->string('name');
             $table->string('phone',15);
             $table->string('desired_position')->nullable();
@@ -32,8 +33,8 @@ return new class extends Migration
             $table->string('nearest_bus_station')->nullable();
             $table->string('noticed_time')->nullable();
             $table->string('confirm')->nullable();
-            $table->integer('hr_id');
-            $table->integer('tl_id');
+            $table->integer('hr_id')->nullable();
+            $table->integer('tl_id')->nullable();
             $table->timestamps();
         });
     }

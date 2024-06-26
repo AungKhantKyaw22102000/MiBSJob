@@ -9,7 +9,8 @@
         <div class="contact">
             <div class="container">
                 <!-- Form -->
-                <form method="POST" id="contactForm" enctype="multipart/form-data" name="contactForm" action="" autocomplete="on">
+                <form method="POST" id="contactForm" enctype="multipart/form-data" action="" autocomplete="on">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-12" id="mainContent">
                             <!-- Personal Details -->
@@ -20,53 +21,53 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="emporocess" class="form-control" name="empprocess" placeholder="Enter Process" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
+                                        <input id="emporocess" class="form-control" name="employeeProcess" placeholder="Enter Process" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="ssb" class="form-control" name="ssb" placeholder="Enter SSB Card Number" type="text" />
+                                        <input id="ssb" class="form-control" name="employeeSsb" placeholder="Enter SSB Card Number" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="emergency" class="form-control" name="emergency" placeholder="Enter Emergency contact" type="text" />
+                                        <input id="emergency" class="form-control" name="emergencyContact" placeholder="Enter Emergency contact" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="nrc" class="form-control" name="nrc" placeholder="Enter NRC Number" type="text" />
+                                        <input id="nrc" class="form-control" name="employeeNrc" placeholder="Enter NRC Number" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="c_address" class="form-control" name="c_address" placeholder="Enter Current Address" type="text" />
+                                        <input id="c_address" class="form-control" name="currentAddress" placeholder="Enter Current Address" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="email" class="form-control" name="email" placeholder="Enter VALID EMAIL and check the result" autocomplete="off" type="email" />
+                                        <input id="email" class="form-control" name="employeeEmail" placeholder="Enter VALID EMAIL and check the result" autocomplete="off" type="email" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
                                         <span>Date of Birth</span>
-                                        <input id="dob" class="form-control" name="dob" placeholder="Enter Date of Birth" type="date" />
+                                        <input id="dob" class="form-control" name="employeeDob" placeholder="Enter Date of Birth" type="date" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="pob" class="form-control" name="pob" placeholder="Enter Place of Birth" type="text" />
+                                        <input id="pob" class="form-control" name="employeePob" placeholder="Enter Place of Birth" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="religion" class="form-control" name="religion" placeholder="Enter Religion" type="text" />
+                                        <input id="religion" class="form-control" name="employeeReligion" placeholder="Enter Religion" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="hidden" id="gender" name="gender" value="General Information" />
+                                        <input type="hidden" id="gender" name="employeeGender" value="General Information" />
                                         <select id="genderList" class="wide" name="gender">
                                             <option>Select Gender</option>
                                             <option value="Male">Male</option>
@@ -76,12 +77,12 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="nationality" class="form-control" name="nationality" placeholder="Enter Nationality" type="text" />
+                                        <input id="nationality" class="form-control" name="employeeNationality" placeholder="Enter Nationality" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="hidden" id="marital_status" name="marital_status" value="General Information" />
+                                        <input type="hidden" id="marital_status" name="employeeMaritalStatus" value="General Information" />
                                         <select id="maritalList" class="wide" name="marital_status">
                                             <option>Marital Status</option>
                                             <option value="Single">Single</option>
@@ -91,12 +92,12 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="blood_g" class="form-control" name="blood_g" placeholder="Enter Blood Group" type="text" />
+                                        <input id="blood_g" class="form-control" name="employeeBloodGroup" placeholder="Enter Blood Group" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="children" class="form-control" name="children" placeholder="Enter No of children" type="text" />
+                                        <input id="children" class="form-control" name="employeeChildren" placeholder="Enter No of children" type="text" />
                                     </div>
                                 </div>
                             </div>
@@ -110,22 +111,22 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="father_name" class="form-control" name="father_name" placeholder="Enter Father Name" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
+                                        <input id="father_name" class="form-control" name="employeeFatherName" placeholder="Enter Father Name" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="father_age" class="form-control" name="father_age" placeholder="Enter Father Age" type="text" />
+                                        <input id="father_age" class="form-control" name="employeeFatherAge" placeholder="Enter Father Age" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="father_occupation" class="form-control" name="father_occupation" placeholder="Enter Father Occupation" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
+                                        <input id="father_occupation" class="form-control" name="employeeFatherOccupation" placeholder="Enter Father Occupation" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="hidden" id="father_depen" name="father_depen" value="General Information" />
+                                        <input type="hidden" id="father_depen" name="employeeFatherDepen" value="General Information" />
                                         <select id="father_depenList" class="wide" name="father_depen">
                                             <option value=" ">Dependent(Yes/No)</option>
                                             <option value="Yes">Yes</option>
@@ -139,22 +140,22 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="mother_name" class="form-control" name="mother_name" placeholder="Enter Mother Name" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
+                                        <input id="mother_name" class="form-control" name="employeeMotherName" placeholder="Enter Mother Name" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="mother_age" class="form-control" name="mother_age" placeholder="Enter Mother Age" type="text" />
+                                        <input id="mother_age" class="form-control" name="employeeMotherAge" placeholder="Enter Mother Age" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="mother_occupation" class="form-control" name="mother_occupation" placeholder="Enter Mother Occupation" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
+                                        <input id="mother_occupation" class="form-control" name="employeeMotherOccupation" placeholder="Enter Mother Occupation" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="hidden" id="mother_depen" name="mother_depen" value="General Information" />
+                                        <input type="hidden" id="mother_depen" name="employeeMotherDepen" value="General Information" />
                                         <select id="mother_depenList" class="wide" name="mother_depen">
                                             <option value=" ">Dependent(Yes/No)</option>
                                             <option value="Yes">Yes</option>
@@ -168,22 +169,22 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="spouse_name" class="form-control" name="spouse_name" placeholder="Enter Spouse Name" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
+                                        <input id="spouse_name" class="form-control" name="employeeSpouseName" placeholder="Enter Spouse Name" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="spouse_age" class="form-control" name="spouse_age" placeholder="Enter Spouse Age" type="text" />
+                                        <input id="spouse_age" class="form-control" name="employeeSpouseAge" placeholder="Enter Spouse Age" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="spouse_occupation" class="form-control" name="spouse_occupation" placeholder="Enter Spouse Occupation" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
+                                        <input id="spouse_occupation" class="form-control" name="employeeSpouseOccupation" placeholder="Enter Spouse Occupation" type="text" data-parsley-pattern="^[a-zA-Z\s.]+$" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input type="hidden" id="spouse_depen" name="spouse_depen" value="General Information" />
+                                        <input type="hidden" id="spouse_depen" name="employeeSpouseDepen" value="General Information" />
                                         <select id="spouse_depenList" class="wide" name="spouse_depen">
                                             <option value=" ">Dependent(Yes/No)</option>
                                             <option value="Yes">Yes</option>
@@ -197,12 +198,12 @@
                             <!-- File Uploader -->
                             <div class="row box">
                                 <div class="box-header">
-                                    <h3><strong>3</strong>Attachment</h3>
+                                    <h3><strong>3</strong>Employee Photo</h3>
                                     <p>Only jpg, png, pdf, max. 1Mb.</p>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="file" name="photo" class="upload-box form-control" />
+                                        <input type="file" name="employeePhoto" class="upload-box form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -216,12 +217,12 @@
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="basic_salary" class="form-control" name="basic_salary" placeholder="Enter Basic Salary" type="text" />
+                                        <input id="basic_salary" class="form-control" name="basicSalary" placeholder="Enter Basic Salary" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">
-                                        <input id="mobile_provide" class="form-control" name="mobile_provide" placeholder="Enter Mobile Provided" type="text" />
+                                        <input id="mobile_provide" class="form-control" name="mobileProvide" placeholder="Enter Mobile Provided" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-12">
